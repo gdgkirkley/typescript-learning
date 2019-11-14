@@ -1,6 +1,8 @@
 import faker from "faker";
+import { Mappable } from "./Map";
 
-export class User {
+// Implements will help us make sure that it has all the properties of the interface
+export class User implements Mappable {
   name: string;
   location: {
     lat: number;

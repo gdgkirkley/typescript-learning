@@ -4,7 +4,7 @@ import { Map } from "./Map";
 
 const user = new User();
 const company = new Company();
-const map = new Map("#map", 2, 49, -124);
+const map = new Map("#map", 2, 0, 0);
 
 map.addMarker(user);
 map.addMarker(company);
