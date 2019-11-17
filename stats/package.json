@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:build": "C://Users/gkirkley/AppData/Roaming/npm/tsc -w",
+    "start:build": "tsc -w",
     "start:run": "nodemon build/index.js",
     "start": "concurrently npm:start:*"
   },
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^12.12.8",
     "concurrently": "^5.0.0",
     "nodemon": "^1.19.4"
   }
