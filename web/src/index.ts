@@ -1,15 +1,26 @@
 // A web framework
-import { UserForm } from "./views/UserForm";
-import { User } from "./models/User";
+import { UserEdit } from "./views/UserEdit";
+import { UserList } from "./views/UserList";
+import { Collection } from "./models/Collection";
+import { User, UserProps } from "./models/User";
 
 const user = User.create({ name: "Test", age: 20 });
 
-const root = document.querySelector("#root");
+const users = new Collection(
+  "http://localhost:3000/users",
+  (json: UserProps) => {
+    return User.create(json);
+  }
+);
 
-if (root) {
-  const userForm = new UserForm(root, user);
+users.on("change", () => {
+  const root = document.querySelector("#root");
+  const usersDiv = document.querySelector("#users");
 
-  userForm.render();
-} else {
-  throw new Error("No root found");
-}
+  if (root && usersDiv) {
+    new UserEdit(root, user).render();
+    new UserList(usersDiv, users).render();
+  }
+});
+
+users.fetch();

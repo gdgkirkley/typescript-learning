@@ -21,8 +21,7 @@ export class Collection<T, K> {
         const user = this.deserialize(value);
         this.models.push(user);
       });
+      this.trigger("change");
     });
-
-    this.trigger("change");
   }
 }
