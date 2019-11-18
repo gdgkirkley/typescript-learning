@@ -1,12 +1,25 @@
 import { Collection } from "../models/Collection";
 
-export abstract class CollectionView<T, K> {
-  constructor(public parent: Element, public collection: Collection<T, K>) {}
+/**
+ * The abstract View for a Collection
+ */
+export abstract class CollectionView<ModelType, ModelInterface> {
+  constructor(
+    public parent: Element,
+    public collection: Collection<ModelType, ModelInterface>
+  ) {}
 
-  abstract renderItem(model: T, itemParent: Element): void;
+  /**
+   * The abstract implementation to say that this will be present in the inherited class
+   * @param model The model for this collection
+   * @param itemParent The parent element to add items to
+   */
+  abstract renderItem(model: ModelType, itemParent: Element): void;
 
-  // Re-render when something changes
-
+  /**
+   * Render the collection view, loop through the items in the collection model
+   * and bind to the parent element.
+   */
   render(): void {
     this.parent.innerHTML = "";
 

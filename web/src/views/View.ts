@@ -1,9 +1,20 @@
 import { Model } from "../models/Model";
 
-export abstract class View<T extends Model<K>, K> {
+/**
+ * The view class that provides methods for displaying a View
+ */
+export abstract class View<
+  ModelType extends Model<ModelInterface>,
+  ModelInterface
+> {
   regions: { [key: string]: Element } = {};
 
-  constructor(public parent: Element, public model: T) {
+  /**
+   * Construct the View
+   * @param parent The parent element for the page
+   * @param model The model type for the View
+   */
+  constructor(public parent: Element, public model: ModelType) {
     this.bindModel();
   }
 
@@ -29,6 +40,10 @@ export abstract class View<T extends Model<K>, K> {
     });
   }
 
+  /**
+   * Split the events map and bind events to correct fragments
+   * @param fragment the fragment to bind events to
+   */
   bindEvents(fragment: DocumentFragment): void {
     const eventsMap = this.eventsMap();
 
@@ -41,6 +56,10 @@ export abstract class View<T extends Model<K>, K> {
     }
   }
 
+  /**
+   * Map the fragment Views to the correct regions
+   * @param fragment The html fragment to map regions to
+   */
   mapRegions(fragment: DocumentFragment): void {
     const regionsMap = this.regionsMap();
 
@@ -53,8 +72,15 @@ export abstract class View<T extends Model<K>, K> {
     }
   }
 
+  /**
+   * Default implementation to make the method available elsewhere
+   */
   onRender(): void {}
 
+  /**
+   * Render the content to the page by binding events, mapping regions, and then
+   * appending it to the parent element
+   */
   render(): void {
     this.parent.innerHTML = "";
 

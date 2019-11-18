@@ -1,6 +1,9 @@
 import { View } from "./View";
 import { User, UserProps } from "../models/User";
 
+/**
+ * Display information about the user
+ */
 export class UserShow extends View<User, UserProps> {
   template(): string {
     return `

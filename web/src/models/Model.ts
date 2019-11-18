@@ -1,7 +1,4 @@
 import { AxiosPromise, AxiosResponse } from "axios";
-import { Eventing } from "./Eventing";
-import { Sync } from "./Sync";
-import { Attributes } from "./Attributes";
 
 interface ModelAttributes<T> {
   set(update: T): void;
